@@ -1,12 +1,80 @@
 body {
   width: 100vw;
   height: 100vh;
-  background: whitesmoke;
+  background: #f0f1f4;
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
-h1 {
+form {
+  display: flex;
+  flex-direction: column;
+  width: 400px;
+  border-radius: 10px;
+  box-shadow: 0px 0px 12px #899593;
+  padding: 28px;
+  background: #f0f1f4;
+}
+
+form h1 {
+  text-align: center;
   font-size: 44px;
+  margin-bottom: 24px;
+  line-height: 1;
+  color: #030303;
+}
+
+form input {
+  padding: 10px;
+  font-size: 1rem;
+  border-radius: 6px;
+  border: 2px solid #d3d4d6;
+  outline: 0;
+  background: #f0f1f4;
+  color: #2c3632;
+  transition: border 0.4s;
+}
+
+form input::placeholder {
+  color: #899593;
+}
+
+form input:-webkit-autofill {
+ -webkit-text-fill-color: #2c3632;
+}
+
+form input:-webkit-autofill,
+form input:-webkit-autofill:hover, 
+form input:-webkit-autofill:focus, 
+form input:-webkit-autofill:active {
+  -webkit-box-shadow: 0 0 0px 1000px #f0f1f4 inset;
+}
+
+form input:focus {
+  border-color: #2c3632;
+}
+
+form input + input,
+form input + button {
+  margin-top: 28px;
+}
+
+form button {
+  font-size: 1rem;
+  font-weight: bold;
+  padding: 10px;
+  border: 0;
+  border-radius: 6px;
+  background: #d49c6b;
+  color: #252b31;
+  cursor: pointer;
+}
+
+.errorBox {
+  height: 26px;
+  margin-top: 2px;
+  color: red;
+  font-size: 14px;
+  font-weight: 700;
 }
