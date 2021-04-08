@@ -6,9 +6,7 @@ import { ValidationError } from 'yup';
 import './App.css';
 
 interface FormData {
-  name: string;
-  email: string;
-  password: string;
+  [key: string]: string;
 }
 
 export const App = () => {
@@ -20,6 +18,8 @@ export const App = () => {
           .email('Digite um e-mail válido'),
         password: Yup.string().required('Campo obrigatório')
           .min(6, 'A senha deve ter no mínimo 6 caracteres'),
+        // passwordConfirmation: Yup.string().required('Campo obrigatório')
+        //   .min(6, 'A senha deve ter no mínimo 6 caracteres'),
       });
 
       await schema.validate(values, {
@@ -38,7 +38,7 @@ export const App = () => {
         err.inner.forEach(error => {
           const path = error.path;
 
-          if(path === 'name' || path === 'email' || path === 'password'){
+          if(path){
             formErrors[path] = error.message ;
           }
         })
@@ -50,7 +50,7 @@ export const App = () => {
   return (
     <div>
       <Formik
-        initialValues={{name: '', email: '', password: ''} as FormData}
+        initialValues={{} as FormData}
         onSubmit={handleSubmit}
       > 
       <Form>
@@ -64,6 +64,7 @@ export const App = () => {
           <Field type="password" name="password" placeholder="Senha" />
           <ErrorMessage name="password" component="div" className="errorBox" />
 
+         
           <button type="submit">
             Cadastrar
           </button>
