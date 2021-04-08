@@ -18,8 +18,8 @@ export const App = () => {
           .email('Digite um e-mail válido'),
         password: Yup.string().required('Campo obrigatório')
           .min(6, 'A senha deve ter no mínimo 6 caracteres'),
-        // passwordConfirmation: Yup.string().required('Campo obrigatório')
-        //   .min(6, 'A senha deve ter no mínimo 6 caracteres'),
+        passwordConfirmation: Yup.string().required('Campo obrigatório')
+          .min(6, 'A senha deve ter no mínimo 6 caracteres'),
       });
 
       await schema.validate(values, {
@@ -63,6 +63,9 @@ export const App = () => {
 
           <Field type="password" name="password" placeholder="Senha" />
           <ErrorMessage name="password" component="div" className="errorBox" />
+
+          <Field type="password" name="passwordConfirmation" placeholder="Confirme sua senha" />
+          <ErrorMessage name="passwordConfirmation" component="div" className="errorBox" />
 
          
           <button type="submit">
