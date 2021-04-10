@@ -25,8 +25,9 @@ form h1 {
   color: #030303;
 }
 
-form input {
-  padding: 10px;
+form > input {
+  padding: 0 12px;
+  height: 46px;
   font-size: 1rem;
   border-radius: 6px;
   border: 2px solid #d3d4d6;
@@ -48,7 +49,6 @@ form input:-webkit-autofill,
 form input:-webkit-autofill:hover, 
 form input:-webkit-autofill:focus, 
 form input:-webkit-autofill:active {
-  box-shadow: 0 0 0px 1000px #f0f1f4 inset;
   -webkit-box-shadow: 0 0 0px 1000px #f0f1f4 inset;
 }
 
@@ -57,11 +57,14 @@ form input:focus {
 }
 
 form input + input,
-form input + button {
+form input + button,
+form #password-strength-container + input,
+form input + #password-strength-container {
   margin-top: 28px;
 }
 
-form button {
+form button {     
+  height: 46px;
   font-size: 1rem;
   font-weight: bold;
   padding: 10px;
@@ -78,4 +81,80 @@ form button {
   color: red;
   font-size: 14px;
   font-weight: 700;
+}
+
+#password-strength-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding-right: 12px;
+  height: 46px;
+  font-size: 1rem;
+  border-radius: 6px;
+  border: 2px solid #d3d4d6;
+  outline: 0;
+  background: #f0f1f4;
+  color: #2c3632;
+
+  transition: border 0.4s;
+}
+
+#password-strength-container input {
+  flex: 1;
+  height: 100%;
+  padding-left: 12px;
+  border: 0;
+  font-size: 1rem;
+  background: inherit;
+  outline: 0;
+}
+
+/* #51EA4E */
+/* #E5E948 */
+/* #E74343 */
+
+.tooltip-container {
+  position: relative;
+  cursor: help;
+
+  font-size: 0px;
+}
+
+.tolltip {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 130px;
+  height: 40px;
+  border-radius: 6px;
+  bottom: 34px;
+  left: 50%;
+  transform: translateX(-50%);
+
+  color: #030303;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: default;
+  background: #E74343;
+  border: 0;
+  border-color: #E74343 transparent transparent transparent;
+
+  transition: opacity 0.4s;
+}
+
+.tolltip::after {
+  position: absolute;
+  bottom: -16px;
+  left: 50%;
+  transform: translateX(-50%);
+  border-width: 8px;
+  border-color: inherit;
+  border-style: solid;
+  content: '';
+}
+
+.tolltip img {
+  color: #E74343;
 }

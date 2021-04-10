@@ -5,9 +5,6 @@
 /.pnp
 .pnp.js
 
-# development testing
-/src/components
-
 # testing
 /coverage
 
