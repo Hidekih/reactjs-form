@@ -6,8 +6,8 @@ import { FiAlertCircle } from 'react-icons/fi'
 
 import './App.css';
 
-const strongRegex = new RegExp("^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})");
-const mediumRegex = new RegExp("^(((?=.*[a-z])(?=.*[A-Z]))|((?=.*[a-z])(?=.*[0-9]))|((?=.*[A-Z])(?=.*[0-9])))");
+const strong = new RegExp("^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})");
+const medium = new RegExp("^(((?=.*[a-z])(?=.*[A-Z]))|((?=.*[a-z])(?=.*[0-9]))|((?=.*[A-Z])(?=.*[0-9])))");
 
 interface FormData {
   [key: string]: string;
@@ -25,10 +25,10 @@ export const App = () => {
 
   useEffect(() => {
     if (password){
-      if(strongRegex.test(password)) {
+      if(strong.test(password)) {
         setTooltipDatas(state => ({ ...state, color: '#51EA4E', message: 'Senha Forte'}));
 
-      } else if (mediumRegex.test(password)) {
+      } else if (medium.test(password)) {
         setTooltipDatas(state => ({ ...state, color: '#E5E948', message: 'Senha Mediana'}));
 
       } else {
@@ -46,7 +46,8 @@ export const App = () => {
     setTooltipDatas({ ...tooltipDatas, opacity: 0, })
   }, [tooltipDatas]);
 
-  const handleSubmit = useCallback(async (values: FormData, { setSubmitting, setErrors }: FormikHelpers<FormData>) => {
+  const handleSubmit = useCallback(
+    async (values: FormData, { setSubmitting, setErrors }: FormikHelpers<FormData>) => {
     try {
       const schema = Yup.object().shape({
         name: Yup.string().required('Campo obrigatório'),
@@ -110,11 +111,28 @@ export const App = () => {
           <ErrorMessage name="email" component="div" className="errorBox" />
 
           <div id="password-strength-container">
-            <Field type="password" name="password" placeholder="Senha" value={password} onChange={(e: any) => setPassword(e.target.value)} />
+            <Field 
+              type="password" 
+              name="password" 
+              placeholder="Senha" 
+              value={password} 
+              onChange={(e: any) => setPassword(e.target.value)} 
+            />
             <div className="tooltip-container" >
-              <span className="tolltip" style={{ opacity: tooltipDatas.opacity, background: tooltipDatas.color, borderColor: `${tooltipDatas.color} transparent transparent`}} >{tooltipDatas.message}</span>
+              <span 
+                className="tolltip" 
+                style={{ opacity: tooltipDatas.opacity, background: tooltipDatas.color, 
+                  borderColor: `${tooltipDatas.color} transparent transparent`}} 
+              >
+                {tooltipDatas.message}
+              </span>
               { tooltipDatas.color && (
-                <FiAlertCircle size={22} color={tooltipDatas.color} onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave} />
+                <FiAlertCircle 
+                  size={22} 
+                  color={tooltipDatas.color} 
+                  onMouseEnter={handleMouseEnter} 
+                  onMouseLeave={handleMouseLeave} 
+                />
               )}
             </div>
           </div>

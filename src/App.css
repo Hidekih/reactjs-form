@@ -1,3 +1,7 @@
+/* #51EA4E */
+/* #E5E948 */
+/* #E74343 */
+
 body {
   width: 100vw;
   height: 100vh;
@@ -79,7 +83,7 @@ form button {
   height: 26px;
   margin-top: 2px;
   margin-left: 2px;
-  color: red;
+  color: #E74343;
   font-size: 14px;
   font-weight: 700;
 }
@@ -111,10 +115,6 @@ form button {
   outline: 0;
 }
 
-/* #51EA4E */
-/* #E5E948 */
-/* #E74343 */
-
 .tooltip-container {
   position: relative;
   cursor: help;
@@ -133,6 +133,7 @@ form button {
   bottom: 34px;
   left: 50%;
   transform: translateX(-50%);
+  box-shadow: 0px 0px 6px #899593;
   opacity: 0;
 
   color: #030303;
