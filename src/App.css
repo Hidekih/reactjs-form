@@ -78,6 +78,7 @@ form button {
 .errorBox {
   height: 26px;
   margin-top: 2px;
+  margin-left: 2px;
   color: red;
   font-size: 14px;
   font-weight: 700;
@@ -132,6 +133,7 @@ form button {
   bottom: 34px;
   left: 50%;
   transform: translateX(-50%);
+  opacity: 0;
 
   color: #030303;
   font-size: 16px;

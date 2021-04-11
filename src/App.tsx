@@ -1,10 +1,13 @@
-import { useCallback, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { Formik, Form, Field, ErrorMessage, FormikHelpers } from 'formik';
 import * as Yup from 'yup';
 import { ValidationError } from 'yup';
 import { FiAlertCircle } from 'react-icons/fi'
 
 import './App.css';
+
+const strongRegex = new RegExp("^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})");
+const mediumRegex = new RegExp("^(((?=.*[a-z])(?=.*[A-Z]))|((?=.*[a-z])(?=.*[0-9]))|((?=.*[A-Z])(?=.*[0-9])))");
 
 interface FormData {
   [key: string]: string;
@@ -13,10 +16,27 @@ interface FormData {
 interface TooltipProps {
   color: string;
   opacity: number;
+  message: string;
 }
 
 export const App = () => {
-  const [ tooltipDatas, setTooltipDatas ] = useState<TooltipProps>({ opacity: 0, color: ''});
+  const [ tooltipDatas, setTooltipDatas ] = useState<TooltipProps>({} as TooltipProps);
+  const [ password, setPassword ] = useState('');
+
+  useEffect(() => {
+    if (password){
+      if(strongRegex.test(password)) {
+        setTooltipDatas(state => ({ ...state, color: '#51EA4E', message: 'Senha Forte'}));
+
+      } else if (mediumRegex.test(password)) {
+        setTooltipDatas(state => ({ ...state, color: '#E5E948', message: 'Senha Mediana'}));
+
+      } else {
+        setTooltipDatas(state => ({ ...state, color: '#E74343', message: 'Senha fraca' }));
+        
+      }
+    }
+  }, [password]);   
   
   const handleMouseEnter = useCallback(() => {
     setTooltipDatas({ ...tooltipDatas, opacity: 1, })
@@ -39,6 +59,10 @@ export const App = () => {
         .required('Confirmação necessária')
         .oneOf([Yup.ref('password'), null], 'Confirmação incorreta'),
       });
+
+      values.password = password;
+
+      console.log(values)
 
       await schema.validate(values, {
         abortEarly: false
@@ -69,7 +93,7 @@ export const App = () => {
         setErrors(formErrors);
       }
     }
-  }, []);
+  }, [password]);
   
   return (
     <div>
@@ -86,9 +110,9 @@ export const App = () => {
           <ErrorMessage name="email" component="div" className="errorBox" />
 
           <div id="password-strength-container">
-            <Field type="password" name="password" placeholder="Senha"  />
+            <Field type="password" name="password" placeholder="Senha" value={password} onChange={(e: any) => setPassword(e.target.value)} />
             <div className="tooltip-container" >
-              <span className="tolltip" style={{ opacity: tooltipDatas.opacity }} >Senha fraca</span>
+              <span className="tolltip" style={{ opacity: tooltipDatas.opacity, background: tooltipDatas.color, borderColor: `${tooltipDatas.color} transparent transparent`}} >{tooltipDatas.message}</span>
               { tooltipDatas.color && (
                 <FiAlertCircle size={22} color={tooltipDatas.color} onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave} />
               )}
