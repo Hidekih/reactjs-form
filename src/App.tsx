@@ -6,7 +6,7 @@ import { FiAlertCircle } from 'react-icons/fi'
 
 import './App.css';
 
-const strong = new RegExp("^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})");
+const strong = new RegExp("^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#()$%^&*.+=])(?=.{8,})");
 const medium = new RegExp("^(((?=.*[a-z])(?=.*[A-Z]))|((?=.*[a-z])(?=.*[0-9]))|((?=.*[A-Z])(?=.*[0-9])))");
 
 interface FormData {
@@ -26,13 +26,13 @@ export const App = () => {
   useEffect(() => {
     if (password){
       if(strong.test(password)) {
-        setTooltipDatas(state => ({ ...state, color: '#51EA4E', message: 'Senha Forte'}));
+        setTooltipDatas(state => ({ ...state, color: '#51EA4E', message: 'Forte'}));
 
       } else if (medium.test(password)) {
-        setTooltipDatas(state => ({ ...state, color: '#E5E948', message: 'Senha Mediana'}));
+        setTooltipDatas(state => ({ ...state, color: '#E5E948', message: 'Boa'}));
 
       } else {
-        setTooltipDatas(state => ({ ...state, color: '#E74343', message: 'Senha fraca' }));
+        setTooltipDatas(state => ({ ...state, color: '#E74343', message: 'Fraca' }));
         
       }
     }
@@ -124,7 +124,7 @@ export const App = () => {
                 style={{ opacity: tooltipDatas.opacity, background: tooltipDatas.color, 
                   borderColor: `${tooltipDatas.color} transparent transparent`}} 
               >
-                {tooltipDatas.message}
+                <span>{tooltipDatas.message}</span>
               </span>
               { tooltipDatas.color && (
                 <FiAlertCircle 

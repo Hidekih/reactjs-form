@@ -109,6 +109,7 @@ form button {
   flex: 1;
   height: 100%;
   padding-left: 12px;
+  border-radius: 6px;
   border: 0;
   font-size: 1rem;
   background: inherit;
@@ -127,8 +128,10 @@ form button {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 130px;
+  min-width: 100px;
   height: 40px;
+  padding: 0 12px;
+
   border-radius: 6px;
   bottom: 34px;
   left: 50%;
@@ -136,8 +139,8 @@ form button {
   box-shadow: 0px 0px 6px #899593;
   opacity: 0;
 
-  color: #030303;
-  font-size: 16px;
+  color: #F0F1F4;
+  font-size: 18px;
   font-weight: bold;
   cursor: default;
   background: #E74343;
