@@ -14,8 +14,10 @@ interface FormData {
 }
 
 interface TooltipProps {
-  color: string;
-  opacity: number;
+  status: {
+    class: string;
+    color: string;
+  };
   message: string;
 }
 
@@ -26,25 +28,17 @@ export const App = () => {
   useEffect(() => {
     if (password){
       if(strong.test(password)) {
-        setTooltipDatas(state => ({ ...state, color: '#51EA4E', message: 'Forte'}));
+        setTooltipDatas(state => ({ ...state, status:{ class: 'strong', color: '#51EA4E' }, message: 'Forte'}));
 
       } else if (medium.test(password)) {
-        setTooltipDatas(state => ({ ...state, color: '#E5E948', message: 'Boa'}));
+        setTooltipDatas(state => ({ ...state, status:{ class: 'medium', color: '#E1AC45' }, message: 'Boa'}));
 
       } else {
-        setTooltipDatas(state => ({ ...state, color: '#E74343', message: 'Fraca' }));
+        setTooltipDatas(state => ({ ...state, status:{ class: 'weak', color: '#E74343' }, message: 'Fraca' }));
         
       }
     }
   }, [password]);   
-  
-  const handleMouseEnter = useCallback(() => {
-    setTooltipDatas({ ...tooltipDatas, opacity: 1, })
-  }, [tooltipDatas]);
-
-  const handleMouseLeave = useCallback(() => {
-    setTooltipDatas({ ...tooltipDatas, opacity: 0, })
-  }, [tooltipDatas]);
 
   const handleSubmit = useCallback(
     async (values: FormData, { setSubmitting, setErrors }: FormikHelpers<FormData>) => {
@@ -119,21 +113,16 @@ export const App = () => {
               onChange={(e: any) => setPassword(e.target.value)} 
             />
             <div className="tooltip-container" >
-              <span 
-                className="tolltip" 
-                style={{ opacity: tooltipDatas.opacity, background: tooltipDatas.color, 
-                  borderColor: `${tooltipDatas.color} transparent transparent`}} 
-              >
+              { tooltipDatas.status?.color && (
+                  <FiAlertCircle 
+                    className='info-icon'
+                    size={22} 
+                    color={tooltipDatas.status?.color}
+                  />
+                )}
+              <span className={`tolltip ${tooltipDatas.status?.class}`} >
                 <span>{tooltipDatas.message}</span>
               </span>
-              { tooltipDatas.color && (
-                <FiAlertCircle 
-                  size={22} 
-                  color={tooltipDatas.color} 
-                  onMouseEnter={handleMouseEnter} 
-                  onMouseLeave={handleMouseLeave} 
-                />
-              )}
             </div>
           </div>
           <ErrorMessage name="password" component="div" className="errorBox" />
@@ -141,7 +130,6 @@ export const App = () => {
           <Field type="password" name="passwordConfirmation" placeholder="Confirme sua senha" />
           <ErrorMessage name="passwordConfirmation" component="div" className="errorBox" />
 
-         
           <button type="submit">
             Cadastrar
           </button>

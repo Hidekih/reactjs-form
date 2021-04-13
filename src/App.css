@@ -161,6 +161,25 @@ form button {
   content: '';
 }
 
+.info-icon:hover + .tolltip {
+  opacity: 1;
+}
+
 .tolltip img {
   color: #E74343;
+}
+
+.weak {
+  background: #E74343;
+  border-color: #E74343 transparent transparent;
+}
+
+.medium {
+  background: #E1AC45;
+  border-color: #E1AC45 transparent transparent;
+}
+
+.strong {
+  background: #51EA4E;
+  border-color: #51EA4E transparent transparent;
 }
