@@ -28,13 +28,13 @@ export const App = () => {
   useEffect(() => {
     if (password){
       if(strong.test(password)) {
-        setTooltipDatas(state => ({ ...state, status:{ class: 'strong', color: '#51EA4E' }, message: 'Forte'}));
+        setTooltipDatas({ status: { class: 'strong', color: '#51EA4E' }, message: 'Forte'});
 
       } else if (medium.test(password)) {
-        setTooltipDatas(state => ({ ...state, status:{ class: 'medium', color: '#E1AC45' }, message: 'Boa'}));
+        setTooltipDatas({ status: { class: 'medium', color: '#E1AC45' }, message: 'Boa'});
 
       } else {
-        setTooltipDatas(state => ({ ...state, status:{ class: 'weak', color: '#E74343' }, message: 'Fraca' }));
+        setTooltipDatas({ status: { class: 'weak', color: '#E74343' }, message: 'Fraca' });
         
       }
     }
@@ -56,8 +56,6 @@ export const App = () => {
       });
 
       values.password = password;
-
-      console.log(values)
 
       await schema.validate(values, {
         abortEarly: false
@@ -104,12 +102,14 @@ export const App = () => {
           <Field type="text" name="email" placeholder="E-mail" />
           <ErrorMessage name="email" component="div" className="errorBox" />
 
-          <div id="password-strength-container">
+          <section>
+          <div className="password-strength-container">
             <Field 
               type="password" 
               name="password" 
               placeholder="Senha" 
               value={password} 
+              id="teste"
               onChange={(e: any) => setPassword(e.target.value)} 
             />
             <div className="tooltip-container" >
@@ -125,6 +125,7 @@ export const App = () => {
               </span>
             </div>
           </div>
+          </section>
           <ErrorMessage name="password" component="div" className="errorBox" />
 
           <Field type="password" name="passwordConfirmation" placeholder="Confirme sua senha" />
