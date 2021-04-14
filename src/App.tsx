@@ -102,7 +102,6 @@ export const App = () => {
           <Field type="text" name="email" placeholder="E-mail" />
           <ErrorMessage name="email" component="div" className="errorBox" />
 
-          <section>
           <div className="password-strength-container">
             <Field 
               type="password" 
@@ -125,7 +124,6 @@ export const App = () => {
               </span>
             </div>
           </div>
-          </section>
           <ErrorMessage name="password" component="div" className="errorBox" />
 
           <Field type="password" name="passwordConfirmation" placeholder="Confirme sua senha" />

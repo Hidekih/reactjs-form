@@ -29,7 +29,7 @@ form h1 {
   color: #030303;
 }
 
-form > input {
+form input {
   padding: 0 12px;
   height: 46px;
   font-size: 1rem;
@@ -62,8 +62,8 @@ form input:focus {
 
 form input + input,
 form input + button,
-form section + input,
-form input + section {
+form .password-strength-container + input,
+form input + .password-strength-container {
   margin-top: 28px;
 }
 
@@ -77,6 +77,13 @@ form button {
   background: #d49c6b;
   color: #252b31;
   cursor: pointer;
+
+  transition: background 0.4s, color 0.4s;
+}
+
+form button:hover {
+  background: #c9864b;
+  color: #f0f1f4;
 }
 
 .errorBox {
@@ -89,41 +96,19 @@ form button {
 }
 
 .password-strength-container {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  padding-right: 12px;
-  height: 46px;
-  font-size: 1rem;
-  border-radius: 6px;
-  border: 2px solid #d3d4d6;
-  outline: 0;
-  background: #f0f1f4;
-  color: #2c3632;
-
-  transition: border 0.4s;
+  position: relative;
 }
 
 .password-strength-container input {
-  flex: 1;
-  height: 100%;
-  padding-left: 12px;
-  border-radius: 6px;
-  border: 0;
-  font-size: 1rem;
-  background: inherit;
-  outline: 0;
-}
-
-section:focus-within .password-strength-container{
-  border-color: #2c3632;
+  width: 100%;
+  padding-right: 40px;
 }
 
 .tooltip-container {
-  position: relative;
+  position: absolute;
   cursor: help;
-
+  top: 25%;
+  right: 12px;
   font-size: 0px;
 }
 
