@@ -65,21 +65,22 @@ form input + .password-strength-container {
 
 form button {     
   height: 46px;
-  font-size: 1rem;
+  font-size: 1.2rem;
   font-weight: bold;
   padding: 10px;
   border: 0;
   border-radius: 6px;
   background: #d49c6b;
-  color: #252b31;
+  
+  color: #030303;
+  
   cursor: pointer;
 
-  transition: background 0.4s, color 0.4s;
+  transition: background 0.6s;
 }
 
 form button:hover {
   background: #c9864b;
-  color: #f0f1f4;
 }
 
 .errorBox {

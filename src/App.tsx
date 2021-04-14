@@ -22,19 +22,19 @@ interface TooltipProps {
 }
 
 export const App = () => {
-  const [ tooltipDatas, setTooltipDatas ] = useState<TooltipProps>({} as TooltipProps);
+  const [ tooltipData, setTooltipData ] = useState<TooltipProps>({} as TooltipProps);
   const [ password, setPassword ] = useState('');
 
   useEffect(() => {
     if (password){
       if(strong.test(password)) {
-        setTooltipDatas({ status: { class: 'strong', color: '#51EA4E' }, message: 'Forte'});
+        setTooltipData({ status: { class: 'strong', color: '#51EA4E' }, message: 'Forte'});
 
       } else if (medium.test(password)) {
-        setTooltipDatas({ status: { class: 'medium', color: '#E1AC45' }, message: 'Boa'});
+        setTooltipData({ status: { class: 'medium', color: '#E1AC45' }, message: 'Boa'});
 
       } else {
-        setTooltipDatas({ status: { class: 'weak', color: '#E74343' }, message: 'Fraca' });
+        setTooltipData({ status: { class: 'weak', color: '#E74343' }, message: 'Fraca' });
         
       }
     }
@@ -95,7 +95,7 @@ export const App = () => {
         onSubmit={handleSubmit}
       > 
       <Form>
-        <h1>Cadastro</h1>
+        <h1>Cadastre-se</h1>
           <Field type="text" name="name" placeholder="Nome" />
           <ErrorMessage name="name" component="div" className="errorBox" />
 
@@ -112,11 +112,11 @@ export const App = () => {
               onChange={(e: any) => setPassword(e.target.value)} 
             />
             <div className="tooltip-container" >
-              { tooltipDatas.status?.color && (
-                <FiAlertCircle size={22} color={tooltipDatas.status?.color} />
+              { tooltipData.status?.color && (
+                <FiAlertCircle className="info-icon" size={22} color={tooltipData.status?.color} />
               )}
-              <span className={`tolltip ${tooltipDatas.status?.class}`} >
-                <span>{tooltipDatas.message}</span>
+              <span className={`tolltip ${tooltipData.status?.class}`} >
+                <span>{tooltipData.message}</span>
               </span>
             </div>
           </div>
