@@ -113,12 +113,8 @@ export const App = () => {
             />
             <div className="tooltip-container" >
               { tooltipDatas.status?.color && (
-                  <FiAlertCircle 
-                    className='info-icon'
-                    size={22} 
-                    color={tooltipDatas.status?.color}
-                  />
-                )}
+                <FiAlertCircle size={22} color={tooltipDatas.status?.color} />
+              )}
               <span className={`tolltip ${tooltipDatas.status?.class}`} >
                 <span>{tooltipDatas.message}</span>
               </span>
