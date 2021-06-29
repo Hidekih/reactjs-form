@@ -1,8 +1,6 @@
-# reactjs-form
-Pequeno projeto integrando a biblioteca de formulários Formik com a biblioteca Yup para validação de dados.
-#### [`Formik`](https://formik.org/docs/overview)
+# Sobre o projeto
 
-#### [`Yup`](https://github.com/jquense/yup#api)
+Pequeno projeto integrando a biblioteca de formulários [`Formik`](https://formik.org/docs/overview) com a biblioteca [`Yup`](https://github.com/jquense/yup#api) para validação de dados.
 
 <p align="center">
   <img src="https://raw.githubusercontent.com/Hidekih/reactjs-form/main/content/form_image.png" width="350" title="Form">
